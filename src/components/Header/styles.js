@@ -1,4 +1,4 @@
-import styled, {css, keyframes} from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import media from '../../media';
 
 export const Container = styled.div`
@@ -8,14 +8,12 @@ export const Container = styled.div`
 	margin: 10px 0;
 `;
 export const ContainerLeft = styled.div`
-	margin-left: 10px;
 	align-items: center;
 `;
 
 export const ContainerRight = styled.div`
 	display: flex;
 	align-items: center;
-
 	margin-right: 5px;
 `
 
@@ -57,9 +55,12 @@ export const Icon = styled.i`
 export const Link = styled.a`
 	color: var(--color-header);
     text-decoration: none;
-	cursor: pointer;
 	outline: 0;
 	user-select: none;
+
+	${media.desktop`
+		cursor: pointer;
+	`};
 `;
 
 
@@ -75,15 +76,14 @@ export const Bars = styled(Icon)`
 export const CartRound = styled.div`
 	border-radius: 50%;
 	border: 1px solid #eeeeee;
-	cursor: pointer;
 	padding: 10px 10px;
 	outline: 0;
-	margin-right: 15px;
+	margin-right: 18px;
 	position: relative;
-`;
 
-export const UserArea = styled.div`
-	display: flex;
+	${media.desktop`
+		cursor: pointer;
+	`};
 `;
 
 const growDown = keyframes`
@@ -119,7 +119,7 @@ export const Menu = styled.div`
 		box-shadow: none;
 	`};
 
-	${ props => props.width && css`
+	${props => props.width && css`
 	  	top: 0;
 		left: -15px;
 		margin: 0;
@@ -139,7 +139,9 @@ export const Menu = styled.div`
 
 export const MenuItem = styled.div`
   	color: black;
+	background-color: white;
   	text-decoration: none;
+
   	display: block;
   	text-align: left;
 	padding: 5px 13px;
@@ -174,9 +176,8 @@ export const SubMenu = styled.div`
 	`};
 `;
 export const SubMenuItem = styled(MenuItem)`
-	
-	cursor: pointer;
 	${media.desktop`
 		text-align: center;
+		cursor: pointer;
 	`};
 `; 

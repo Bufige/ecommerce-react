@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Container, ContainerLeft, ContainerRight, Logo, Icon, Link, Bars, CartRound, Menu, MenuItem, SubMenu, SubMenuItem, UserArea} from './styles';
+import { Container, ContainerLeft, ContainerRight, Logo, Icon, Link, Bars, CartRound, Menu, MenuItem, SubMenu, SubMenuItem} from './styles';
 
 import SearchBar from '../SearchBar';
 import { useWindowSize } from '../../utils';
@@ -8,8 +8,6 @@ export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [openUser, setOpenUser] = useState(false);
 	const window = useWindowSize();
-
-	const [subMenus, setSubMenus] = useState([false, false, false]);
 
 	const onSearch = (text) => {
 		console.log('search for:' + text);
@@ -68,7 +66,7 @@ export default function Header() {
 				</MenuItem>
 			</Menu>
 			{window.width >= 1024 &&
-			<SearchBar/> }
+			<SearchBar onClick={onSearch}/> }
 			<CartRound>
 				<Icon className="fas fa-heart badge" value="0"></Icon>
 			</CartRound>

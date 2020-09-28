@@ -16,6 +16,19 @@ export default createGlobalStyle`
 		line-height: 1.5;
 		
 		background-color: white;
+
+
+
+		.noselect {
+    		cursor: default;
+    		-webkit-touch-callout: none;
+    		-webkit-user-select: none;
+    		-khtml-user-select: none;
+    		-moz-user-select: none;
+    		-ms-user-select: none;
+    		user-select: none;
+		}
+
 		--color-header: #000;
 		--color-cart-count: #f51167;
 		--color-footer: #4c4c4c;

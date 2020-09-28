@@ -35,5 +35,7 @@ export const Search = styled.i`
 	${media.desktop`
 		margin-right: 1rem;
 	`};
-	cursor: pointer;
+	${media.desktop`
+		cursor: pointer;
+	`};
 `;
