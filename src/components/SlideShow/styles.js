@@ -126,4 +126,5 @@ export const Discover = styled.button`
 export const Cart = styled.button`
 	${Button};
 	background-color: white;
+	margin-right: 10px;
 `;

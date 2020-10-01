@@ -22,6 +22,12 @@ export const ContainerLeft = styled.div`
 	justify-content: center;
 
 	margin-left: 10px;
+
+	margin-bottom: 5px;
+
+	${media.desktop`
+		margin-bottom: 0;
+	`};
 `;
 
 export const ContainerRight = styled.div`
