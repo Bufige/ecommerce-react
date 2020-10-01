@@ -13,7 +13,7 @@ export const Container = styled.div`
 	background-image: ${props => `url(${props.image})`};
   	overflow: hidden;
   	text-overflow: ellipsis;
-
+	margin-bottom: 20px;
 	${media.desktop`
 		height: 400px;
 	`};

@@ -6,6 +6,7 @@ export const Container = styled.div`
 	display: flex;
 	justify-content: center;
 	width: 100%;
+	margin-right: 5px;
 `;
 export const Input = styled.input.attrs(props => ({
 	type: 'text',
@@ -30,7 +31,7 @@ export const Search = styled.i`
 	margin-right: 7%;
 
 	${media.tablet`
-		margin-right: 3.5rem;
+		margin-right: 1.5rem;
 	`};
 	${media.desktop`
 		margin-right: 1rem;

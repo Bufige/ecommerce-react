@@ -3,24 +3,48 @@ import media from '../../media';
 
 export const Container = styled.div`
 	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
-	align-items: center;
-	margin: 10px 0;
+	margin-bottom: 10px;
+	${media.tablet`
+		flex-direction: row;
+		margin: 10px 0;
+	`};
+	${media.desktop`
+		flex-direction: row;
+		margin: 10px 0;
+	`};
 `;
 export const ContainerLeft = styled.div`
+	display: flex;
+	flex-direction: column;
 	align-items: center;
+	justify-content: center;
+
+	margin-left: 10px;
 `;
 
 export const ContainerRight = styled.div`
+	position: relative;
 	display: flex;
 	align-items: center;
-	margin-right: 5px;
+	justify-content: flex-end;
+	margin: 0 5px;
+
+	${media.desktop`
+		align-items: center;
+	`};
 `
 
 export const Logo = styled.img`
 	vertical-align: center;
 	max-width: 100%;
-	margin: 15px;
+	margin-top: 5px;
+	margin-bottom: 12px;
+
+	${media.desktop`
+		margin: 15px;
+	`};
 `;
 
 export const Icon = styled.i`
@@ -43,12 +67,6 @@ export const Icon = styled.i`
 		left: 0;
 		margin-top: -25px;
 		margin-left: 30px;
-
-    	-webkit-transition: all 0.2s ease-out 0s;
-    	-moz-transition: all 0.2s ease-out 0s;
-    	-ms-transition: all 0.2s ease-out 0s;
-    	-o-transition: all 0.2s ease-out 0s;
-    	transition: all 0.2s ease-out 0s;
     	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 	}
 `;
@@ -69,6 +87,7 @@ export const Bars = styled(Icon)`
 	
 	${media.desktop`
 		display: none !important;
+		margin: 10px 5px;
 	`};
 `;
 
@@ -76,13 +95,15 @@ export const Bars = styled(Icon)`
 export const CartRound = styled.div`
 	border-radius: 50%;
 	border: 1px solid #eeeeee;
-	padding: 10px 10px;
+	padding: 5px 5px;
 	outline: 0;
-	margin-right: 18px;
+	margin-right: 22px;
 	position: relative;
 
 	${media.desktop`
 		cursor: pointer;
+		padding: 10px 10px;
+		margin-right: 18px;
 	`};
 `;
 
@@ -105,7 +126,7 @@ export const Menu = styled.div`
 	width:  ${props => props.width ? props.width : `calc(93.5% - 20px)`};
 	margin-left: 5%;
 	margin-right: 3%;
-	margin-top: 4rem;
+	margin-top: 3rem;
   	background-color: white;
   	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	padding: 5px;
@@ -143,10 +164,11 @@ export const MenuItem = styled.div`
   	text-decoration: none;
 
   	display: block;
+	position: relative;
+
   	text-align: left;
 	padding: 5px 13px;
-	font-size: 14px;
-	position: relative;
+	font-size: 14px;	
 	${media.desktop`
 	  	:hover {
 			.submenu {

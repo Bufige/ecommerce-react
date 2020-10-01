@@ -4,11 +4,13 @@ import { Container, ContainerLeft, ContainerRight, Logo, Icon, Link, Bars, CartR
 
 import SearchBar from '../SearchBar';
 import { useWindowSize } from '../../utils';
+import { useStoreContext } from '../../storeContext';
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [openUser, setOpenUser] = useState(false);
 	const window = useWindowSize();
 
+	const {user} = useStoreContext();
 	const onSearch = (text) => {
 		console.log('search for:' + text);
 	}
@@ -65,8 +67,8 @@ export default function Header() {
 					<Link src="#">Contact</Link>
 				</MenuItem>
 			</Menu>
-			{window.width >= 1024 &&
-			<SearchBar onClick={onSearch}/> }
+			<SearchBar onClick={onSearch}/> 
+			
 			<CartRound>
 				<Icon className="fas fa-heart badge" value="0"></Icon>
 			</CartRound>
@@ -76,12 +78,25 @@ export default function Header() {
 			<CartRound onClick={() => setOpenUser(x => !x)}>
 				<Icon className="fas fa-user" ></Icon>
 				<Menu open={openUser} width={'100px'}>
-					<MenuItem>
-						Login
-					</MenuItem>
-					<MenuItem>
-						Register
-					</MenuItem>
+
+					{user ? <>
+							<MenuItem>
+								Profile
+							</MenuItem>
+							<MenuItem>
+								Logout
+							</MenuItem>
+						</>
+						:
+						<>
+							<MenuItem>
+								Login
+							</MenuItem>
+							<MenuItem>
+								Register
+							</MenuItem>
+						</>
+					}
 				</Menu>
 			</CartRound>
 			<Bars className="fas fa-bars fa-lg" onClick={onMenu}></Bars>

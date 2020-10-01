@@ -32,5 +32,9 @@ export default createGlobalStyle`
 		--color-header: #000;
 		--color-cart-count: #f51167;
 		--color-footer: #4c4c4c;
+		--color-primary: #0275d8;
+		--color-active: #ff003c;
+		--color-grey: #e8e8e8;
+		--color-grey-dark: #868c98;
     }
 `;
