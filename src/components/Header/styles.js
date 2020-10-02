@@ -1,4 +1,9 @@
 import styled, { css, keyframes } from 'styled-components';
+
+import {
+	Link as RLink
+} from 'react-router-dom';
+
 import media from '../../media';
 
 export const Container = styled.div`
@@ -75,8 +80,11 @@ export const Icon = styled.i`
 		margin-left: 30px;
     	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 	}
+
+	outline: 0;
+	user-select: none;
 `;
-export const Link = styled.a`
+export const Link = styled(RLink)`
 	color: var(--color-header);
     text-decoration: none;
 	outline: 0;
@@ -102,10 +110,16 @@ export const CartRound = styled.div`
 	border-radius: 50%;
 	border: 1px solid #eeeeee;
 	padding: 5px 5px;
-	outline: 0;
 	margin-right: 22px;
 	position: relative;
 
+	outline: 0;
+	user-select: none;
+	${media.tablet`
+		cursor: pointer;
+		padding: 10px 10px;
+		margin-right: 18px;
+	`};
 	${media.desktop`
 		cursor: pointer;
 		padding: 10px 10px;
@@ -171,7 +185,6 @@ export const MenuItem = styled.div`
 
   	display: block;
 	position: relative;
-
   	text-align: left;
 	padding: 5px 13px;
 	font-size: 14px;	

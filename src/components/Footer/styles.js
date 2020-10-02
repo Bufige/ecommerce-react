@@ -29,7 +29,14 @@ export const FooterContent = styled.div`
 	max-width: 250px;
 	display: flex;
 	flex-direction: column;
-	margin: 0 20px;
+	
+	${media.tablet`
+		margin: 0 30px;
+		
+	`};
+	${media.desktop`
+		margin: 0 60px;
+	`};
 `;
 
 export const FooterTitle = styled.div`

@@ -9,7 +9,6 @@ import ProductsData from '../../data/products';
 import Product from '../../components/Product';
 import Products from '../../components/Products';
 import NewsLatter from '../../components/NewsLatter';
-import Footer from '../../components/Footer';
 
 export default function Home() {
 	const sort = ['all', 'new', 'featured'];
@@ -45,6 +44,5 @@ export default function Home() {
 				</ShopContent>					
 			</ShopDetails>
 		</Content>
-		<Footer/>
 	</Container>
 }

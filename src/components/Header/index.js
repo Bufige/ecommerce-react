@@ -25,10 +25,10 @@ export default function Header() {
 		<ContainerRight>
 			<Menu open={isOpen}>
 				<MenuItem>
-					<Link src="#">Home</Link>
+					<Link to="/">Home</Link>
 				</MenuItem>
 				<MenuItem>
-					<Link src="#">Category</Link>
+					<Link to="/product">Category</Link>
 				</MenuItem>
 				<MenuItem>
 					<Link src="#">Lastest</Link>
@@ -64,16 +64,18 @@ export default function Header() {
 					</SubMenu>
 				</MenuItem>
 				<MenuItem>
-					<Link src="#">Contact</Link>
+					<Link to="/contact">Contact</Link>
 				</MenuItem>
 			</Menu>
 			<SearchBar onClick={onSearch}/> 
-			
+
+			{/*
 			<CartRound>
 				<Icon className="fas fa-heart badge" value="0"></Icon>
 			</CartRound>
+			*/}
 			<CartRound>
-				<Icon className="fas fa-shopping-cart badge" value="0"></Icon>
+				<Link to="/cart"><Icon className="fas fa-shopping-cart badge" value="0"></Icon></Link>
 			</CartRound>
 			<CartRound onClick={() => setOpenUser(x => !x)}>
 				<Icon className="fas fa-user" ></Icon>
@@ -90,10 +92,10 @@ export default function Header() {
 						:
 						<>
 							<MenuItem>
-								Login
+								<Link to="/signin">Sign in</Link>
 							</MenuItem>
 							<MenuItem>
-								Register
+								<Link to="/signup">Sign up</Link>
 							</MenuItem>
 						</>
 					}

@@ -41,6 +41,7 @@ export const ShopDetails = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	
 	${media.tablet`
 		flex-direction: row;
 	`};
@@ -49,6 +50,12 @@ export const ShopDetails = styled.div`
 	`};
 `;
 export const ShopContent = styled.div`
+	${media.tablet`
+		margin: 0 20px;
+	`};
+	${media.desktop`
+		margin: 0 40px;
+	`};
 `;
 export const Icon = styled.i`
 	margin: 10px 0;

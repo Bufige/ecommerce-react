@@ -1,9 +1,9 @@
 import styled from 'styled-components';
+import {Link as RLink} from 'react-router-dom';
 import media from '../../media';
 
-export const Container = styled.div`
+export const Container = styled(RLink)`
 	width: calc(100% - 20px);
-	height: 400px;
 	margin: 10px;
 
 	border-radius: 20px;
@@ -15,6 +15,11 @@ export const Container = styled.div`
 	${media.desktop`
 		width: calc(25% - 20px);
 	`};
+
+	outline: 0;
+	user-select: none;
+	text-decoration: none;
+	color: inherit;
 `;
 
 export const ProductImg = styled.img`
