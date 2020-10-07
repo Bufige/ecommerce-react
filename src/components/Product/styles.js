@@ -2,10 +2,9 @@ import styled from 'styled-components';
 import {Link as RLink} from 'react-router-dom';
 import media from '../../media';
 
-export const Container = styled(RLink)`
-	width: calc(100% - 20px);
-	margin: 10px;
-
+export const Container = styled.div`
+	width: 100%;
+	margin-top: 20px;
 	border-radius: 20px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	
@@ -15,13 +14,40 @@ export const Container = styled(RLink)`
 	${media.desktop`
 		width: calc(25% - 20px);
 	`};
+`;
+
+export const ProductContainer = styled.div`
+	position: relative;
+
+	:hover {
+		.show {
+			display: block;
+		}
+	}
+`;
+export const ProductHover = styled(RLink)`
+	display: none;
+	position: absolute;
+	z-index: 9999;
+	width: calc(100% - 30px);
+	height: 40px;
+	padding: 10px 15px;
+	
+	top: 40%;
+	left: 50%;
+
+	text-align: center;
+	font-weight: bolder;
+	line-height: 40px;
+	text-transform: uppercase;
+	transform: translate(-50%);
+	background-color: rgba(0,0,0, 0.3);
 
 	outline: 0;
 	user-select: none;
 	text-decoration: none;
-	color: inherit;
+	color: var(--color-grey);
 `;
-
 export const ProductImg = styled.img`
 	width: 100%;
 	height: 250px;

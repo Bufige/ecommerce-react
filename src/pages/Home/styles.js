@@ -66,7 +66,7 @@ export const ShopTitle = styled.h3`
 `;
 
 export const ShopDescription = styled.p`
-	width: 300px;
+	width: 230px;
 	font-size: 16px;
 	margin: 5px 0;
 	overflow-wrap: wrap;

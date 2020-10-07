@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
 	Container, 
@@ -22,52 +22,74 @@ import {
 } from './styles';
 
 import InputCount from '../../components/InputCount';
+import productService from '../../services/productService';
+
+
+import { 
+	CartAdd,
+	CartGet,
+	CartUpdate,
+	CartRemove
+} from '../../helpers/localStorage';
+
 
 
 export default function Product(props) {
 	const [value, setValue] = useState(1);
 	const [imageId, setImageId] = useState(0);
+	const [product, setProduct] = useState(undefined);
 
 	const [details, setDetails] = useState([false,false,false]);
-
-	const updateValue = (v) => {
-		let x = value + v;
-		x = Math.max(1, x);
-		setValue(x);
-	}
-
+	
+	const images = [
+		"https://via.placeholder.com/100x400",
+		"https://via.placeholder.com/200x400",
+		"https://via.placeholder.com/300x400",
+		"https://via.placeholder.com/400x400",
+		"https://via.placeholder.com/500x400"
+	];
 	const flipDetail = (index) => {
 		let tmp = [...details];
 		tmp[index] = !tmp[index];
 		setDetails(tmp);
-		console.log(details);
 	}
 
 	const onChange = (v) => {
 		setValue(v);
 	}
-	return <Container>
+
+
+	useEffect( () => {
+		productService.show(props.match.params.id).then( res => {
+			if(res.data) {
+				setProduct(res.data);
+			}
+		});
+		
+	}, [props.match.params.id]);
+
+	const onShop = () => {
+		for(let i = 0; i < value; i++) {
+			CartAdd(product);
+		}
+	}
+	return product ? <Container>
 		<ContainerLeft>
 			<ImageContent>
-				<Image src="https://via.placeholder.com/300x400"/>
+				<Image src={product.images.length ? product.images[imageId].path : images[imageId]}/>
 			</ImageContent>
 			<ImageContent>
-				<MiniImage src="https://via.placeholder.com/300x400"/>
-				<MiniImage src="https://via.placeholder.com/300x400"/>
-				<MiniImage src="https://via.placeholder.com/300x400"/>
-				<MiniImage src="https://via.placeholder.com/300x400"/>
-				<MiniImage src="https://via.placeholder.com/300x400"/>
-				<MiniImage src="https://via.placeholder.com/300x400"/>
-				<MiniImage src="https://via.placeholder.com/300x400"/>
-				<MiniImage src="https://via.placeholder.com/300x400"/>
+				{(product.images.length ? product.images : images).filter( (x, index) => index !== imageId).map((item,index) => {
+					return <MiniImage key={index} src={product.images.length ? item.path : item} onClick={() => setImageId(index)}/>
+				})}
 			</ImageContent>
 		</ContainerLeft>
 		<ContainerRight>
-			<ProductTitle>Product 1</ProductTitle>
-			<ProductPrice>33$</ProductPrice>
-			<ProductDescription>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</ProductDescription>
+			<ProductTitle>{product.name}</ProductTitle>
+			<ProductPrice>${product.price}</ProductPrice>
+			<ProductDescription>{product.description}</ProductDescription>
 			<InputCount value={value} onChange={onChange}/>
-			<ProductShop>shop now</ProductShop>
+			<ProductShop onClick={onShop}>shop now</ProductShop>
 			<ProductDetail>
 				<ProductDetailTitle onClick={() => flipDetail(0)}>information<IconDown className={details[0] ? "fas fa-arrow-up" : "fas fa-arrow-down"}/></ProductDetailTitle>
 				<ProductDetailContent drop={details[0]}>
@@ -92,5 +114,5 @@ export default function Product(props) {
 				</ProductDetailContent>
 			</ProductDetail>
 		</ContainerRight>
-	</Container>
+	</Container> : null;
 }

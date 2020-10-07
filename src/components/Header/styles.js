@@ -187,11 +187,12 @@ export const MenuItem = styled.div`
 	position: relative;
   	text-align: left;
 	padding: 5px 13px;
-	font-size: 14px;	
+	font-size: 14px;
 	${media.desktop`
 	  	:hover {
 			.submenu {
 				display: block;
+
 			}
 		}
 	`};

@@ -12,6 +12,9 @@ export default function SearchBar(props) {
 
 	const handleChange = (e) => {
 		setText(e.target.value);
+		if(props.onChange) {
+			props.onChange(e.target.value);
+		}
 	}
 	return <Container>
 		<Input placeholder="Search" value={text} onChange={handleChange} />

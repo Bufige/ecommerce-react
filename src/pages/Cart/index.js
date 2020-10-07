@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 
 import {
 	Container,
@@ -23,25 +23,37 @@ import {
 
 import InputCount from '../../components/InputCount';
 
+import { 
+	CartGet,
+	CartUpdate,
+	CartRemove
+} from '../../helpers/localStorage';
 
-const CItem = (product) => {
-	const [value, setValue] = useState(1);
+const CItem = (props) => {
+	const [value, setValue] = useState(props.amount);
 
-	const onChange = (v) => {
+	const onUpdate = (v) => {
 		setValue(v);
+
+		if(props.onUpdate)
+			props.onUpdate(props.product, v);
+	}
+	const onRemove = () => {
+		if(props.onRemove)
+			props.onRemove(props.product);
 	}
 	return <CartItem>
-		<CartItemImage src="https://via.placeholder.com/300x300" />
+		<CartItemImage src={props.product.images.length ? props.product.images[0].path : "https://via.placeholder.com/300x300"}/>
 		<CartItemFix>
 			<CartItemLeft>
 				<CartItemContent>
-					<CartItemTitle>product name</CartItemTitle>
-					<InputCount value={value} onChange={onChange} />
+					<CartItemTitle>{props.product.name}</CartItemTitle>
+					<InputCount value={value} onChange={onUpdate} />
 				</CartItemContent>
 			</CartItemLeft>
 			<CartItemRight>
-				<CartItemPrice>${value * 15}</CartItemPrice>
-				<Round>
+				<CartItemPrice>${(value * props.product.price).toFixed(2)}</CartItemPrice>
+				<Round onClick={onRemove}>
 					<CartItemDelete className="fas fa-trash"></CartItemDelete>
 				</Round>
 			</CartItemRight>
@@ -50,28 +62,52 @@ const CItem = (product) => {
 	</CartItem>
 }
 export default function Cart(props) {
-	const [value, setValue] = useState(1);
+	const [products, setProducts] = useState([])
+	const [shipping, setShipping] = useState(10);
 
-	const onChange = (v) => {
-		setValue(v);
+	useEffect( () => {
+		const tmp = CartGet();
+		setProducts(tmp);
+	}, []);
+
+	const onUpdate = (item, amount) => {
+		CartUpdate(item, amount);
+
+		const tmp = CartGet();
+		setProducts(tmp);
+	}
+
+	const onRemove = (item) => {
+		CartRemove(item);
+		const tmp = CartGet();
+		setProducts(tmp);
+	}
+
+	const getTotal = () => {
+		let total = 0;
+		for(let product of products) {
+			total += (product.product.price * product.amount);
+		}
+		return total;
 	}
 	return <Container>
 		<CartHeader>
 			<CartTitle>Cart</CartTitle>
 			<CartHeaderRight>
-				<Button>Continue Shopping</Button>
+				<Button to="/">Continue Shopping</Button>
 			</CartHeaderRight>
 
 		</CartHeader>
 		<CartContent>
-			<CItem />
-			<CItem />
-			<CItem />
+			{products && products.map( (item, index) => {
+				const product = item.product;
+				return <CItem key={item.product.id} product={product} amount={item.amount} onUpdate={onUpdate} onRemove={onRemove}/>
+			})}
 		</CartContent>
 		<CartBottom>
-			<CartItemPrice>SUBTOTAL&nbsp;&nbsp;&nbsp;&nbsp;${value * 15}</CartItemPrice>
-			<CartItemPrice>SHIPPING&nbsp;&nbsp;&nbsp;&nbsp;${value * 15}</CartItemPrice>
-			<CartItemPrice>Total&nbsp;&nbsp;&nbsp;&nbsp;${value * 15}</CartItemPrice>
+			<CartItemPrice>SUBTOTAL&nbsp;&nbsp;&nbsp;&nbsp;${getTotal().toFixed(2)}</CartItemPrice>
+			<CartItemPrice>SHIPPING&nbsp;&nbsp;&nbsp;&nbsp;${products.length ? shipping : 0}</CartItemPrice>
+			<CartItemPrice>Total&nbsp;&nbsp;&nbsp;&nbsp;${(getTotal() + (products.length ? shipping : 0)).toFixed(2)}</CartItemPrice>
 			<Button>CHECKOUT</Button>
 		</CartBottom>
 	</Container>

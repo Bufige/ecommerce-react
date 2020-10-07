@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import userService from '../../services/userService';
+import { useStoreContext } from '../../storeContext';
+import { setToken as setLToken, setUser as setLUser} from '../../helpers/localStorage';
+
 
 import {
 	Container,
+	Form,
 	Title,
 	Input,
 	Submit,
@@ -15,28 +21,45 @@ export default function SignUp(props) {
 	const [password, setPassword] = useState('');
 	const [cpassword, setCPassword] = useState('');
 
+	const {setToken, setUser, user} = useStoreContext();
+	const onSubmit = (e) => {
+		e.preventDefault();
 
-	const onSubmit = () => {
-		
-	}	
+
+		userService.register(name, email, password).then(res => {
+			if(res.data) {
+				setLToken(res.data.auth.token);
+				setToken(res.data.auth.token);
+
+				setLUser(res.data.user);
+				setUser(res.data.user);
+			}
+			else {
+				console.log(res.error);
+			}
+		});
+	}
 	return <Container>
 		<Title>Sign up</Title>
-		<InputContainer>
-			<Icon className="fas fa-user"/>
-			<Input type="text" placeholder="Your name" onChange={(e) => setName(e.target.value)}/>
-		</InputContainer>
-		<InputContainer>
-			<Icon className="fas fa-envelope"/>
-			<Input type="text" placeholder="example@example.com" onChange={(e) => setEmail(e.target.value)}/>
-		</InputContainer>
-		<InputContainer>
-			<Icon className="fas fa-lock"/>
-			<Input type="password" placeholder="Your password" onChange={(e) => setPassword(e.target.value)}/>
-		</InputContainer>
-		<InputContainer>
-			<Icon className="fas fa-lock"/>
-			<Input type="password" placeholder="Confirm your password" onChange={(e) => setCPassword(e.target.value)}/>
-		</InputContainer>
-		<Submit onClick={onSubmit}>sign up</Submit>
+		<Form>
+			<InputContainer>
+				<Icon className="fas fa-user" />
+				<Input type="text" placeholder="Your name" onChange={(e) => setName(e.target.value)} />
+			</InputContainer>
+			<InputContainer>
+				<Icon className="fas fa-envelope" />
+				<Input type="text" placeholder="example@example.com" onChange={(e) => setEmail(e.target.value)} />
+			</InputContainer>
+			<InputContainer>
+				<Icon className="fas fa-lock" />
+				<Input type="password" placeholder="Your password" onChange={(e) => setPassword(e.target.value)} />
+			</InputContainer>
+			<InputContainer>
+				<Icon className="fas fa-lock" />
+				<Input type="password" placeholder="Confirm your password" onChange={(e) => setCPassword(e.target.value)} />
+			</InputContainer>
+			<Submit type="submit" onClick={onSubmit}>sign up</Submit>
+		</Form>
+
 	</Container>
 }

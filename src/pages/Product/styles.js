@@ -19,6 +19,7 @@ export const ContainerLeft = styled.div`
 `;
 export const ContainerRight = styled.div`
 	margin-left: 40px;
+	width: 100%;
 `;
 
 export const ProductTitle = styled.h1`
@@ -44,6 +45,9 @@ export const Image =  styled.img`
 	${media.desktop`
 		height: 400px;
 	`};
+
+	user-select: none;
+	outline: none;
 `;
 
 export const MiniImage = styled.img`
@@ -57,6 +61,9 @@ export const MiniImage = styled.img`
 	${media.desktop`
 		cursor:pointer;
 	`};
+
+	user-select: none;
+	outline: none;
 `;
 
 export const ProductShop = styled.button`

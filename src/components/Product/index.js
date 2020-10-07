@@ -1,7 +1,10 @@
 import React from 'react';
+import { CartAdd } from '../../helpers/localStorage';
 import Rating from '../Rating';
 import { 
 	Container,
+	ProductContainer,
+	ProductHover,
 	ProductImg,
 	ProductName,
 	ProductCenter,
@@ -13,12 +16,26 @@ import {
 
 
 export default function Product({product, id}) {
-	return <Container to={{pathname: `/product/${id}`}}>
-		<ProductImg src="https://via.placeholder.com/350x370"/>
+	const addToCart = () => {
+		CartAdd(product);
+	}
+	return <Container>
+		<ProductContainer>
+			{product.images.length ? 
+				<ProductImg src={product.images[0].path}/>
+				:
+				<ProductImg src="https://via.placeholder.com/350x370"/>
+			}
+			<ProductHover className="show" to={{pathname: `/product/${id}`}} >visit</ProductHover>
+		</ProductContainer>
 		<ProductName>{product.name}</ProductName>
 		<ProductCenter>
-			<ProductPrice>10</ProductPrice>
-			<ProductPrice color={'var(--color-active)'}><strike>20</strike></ProductPrice>
+			<ProductPrice>{product.price}</ProductPrice>
+			{product.discount ?
+				<ProductPrice color={'var(--color-active)'}><strike>{product.price - (product.price * (product.discount/100))}</strike></ProductPrice>
+				: 
+				null
+			}
 		</ProductCenter>
 		<ProductCenter>
 			<Rating value={55}/>
@@ -30,7 +47,7 @@ export default function Product({product, id}) {
 			</CartRound>
 			*/}
 
-			<CartRound>
+			<CartRound onClick={addToCart}>
 				<Icon className="fas fa-shopping-cart badge" color={'var(--color-primary)'}></Icon>
 			</CartRound>
 		</ProductCenter>

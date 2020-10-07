@@ -2,10 +2,16 @@ import styled from 'styled-components';
 import media from '../../media';
 
 
+import {Link as RLink} from 'react-router-dom';
+
 export const Container = styled.div`
 	justify-content: center;
 	align-items: center;
 	margin: 10px;
+
+	${media.desktop`
+		padding: 100px;
+	`};
 `;
 
 export const CartTitle = styled.h1`
@@ -141,7 +147,7 @@ export const CartItemDelete = styled.i`
 `;
 
 
-export const Button = styled.button`
+export const Button = styled(RLink)`
 	width: 200px;
 	height: 35px;
 	padding: 5px 10px;
@@ -153,8 +159,11 @@ export const Button = styled.button`
 	font-weight: bold;
 
 	outline: 0;
-	user-select: 0;
-
+	user-select: none;
+	text-decoration: none;
+	
+	text-align: center;
+	line-height: 35px;
 	${media.tablet`
 		cursor: pointer;
 	`};

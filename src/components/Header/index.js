@@ -5,18 +5,23 @@ import { Container, ContainerLeft, ContainerRight, Logo, Icon, Link, Bars, CartR
 import SearchBar from '../SearchBar';
 import { useWindowSize } from '../../utils';
 import { useStoreContext } from '../../storeContext';
+import { logout } from '../../helpers/localStorage';
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [openUser, setOpenUser] = useState(false);
 	const window = useWindowSize();
 
-	const {user} = useStoreContext();
+	const {user, setUser} = useStoreContext();
 	const onSearch = (text) => {
 		console.log('search for:' + text);
 	}
 	const onMenu = () => {
 		console.log("open sidebar:", !isOpen);
 		setIsOpen(x => !x);
+	}
+	const onLogout = () => {
+		logout();
+		setUser(undefined);
 	}
 	return <Container>
 		<ContainerLeft>
@@ -28,7 +33,7 @@ export default function Header() {
 					<Link to="/">Home</Link>
 				</MenuItem>
 				<MenuItem>
-					<Link to="/product">Category</Link>
+					<Link to="/products">Category</Link>
 				</MenuItem>
 				<MenuItem>
 					<Link src="#">Lastest</Link>
@@ -82,10 +87,17 @@ export default function Header() {
 				<Menu open={openUser} width={'100px'}>
 
 					{user ? <>
+							{user.role === 'admin' ? 
+								<MenuItem>
+									Admin
+								</MenuItem>
+								:
+								null
+							}
 							<MenuItem>
 								Profile
 							</MenuItem>
-							<MenuItem>
+							<MenuItem onClick={onLogout}>
 								Logout
 							</MenuItem>
 						</>

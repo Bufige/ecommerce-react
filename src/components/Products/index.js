@@ -1,14 +1,19 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { 
-	Container,
+	Container
  } from './styles';
 
 import Product from '../Product';
 
 export default function Products({products}) {
+	const [tmp, setTmp] = useState([]);
+
+	useEffect( () => {
+		setTmp(products);
+	}, [products])
 	return <Container>
-		{products.map((item, index) => {
-			return <Product key={index} id={index} product={item}/>
+		{tmp && tmp.map((item, index) => {
+			return <Product key={item.id} id={item.id} product={item}/>
 		})}
 	</Container>
 }

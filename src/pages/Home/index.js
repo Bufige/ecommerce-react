@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Content, Title, Sort, SortItem, Icon, ShopDetails,ShopTitle,ShopDescription, ShopContent } from './styles';
 
 
@@ -10,10 +10,23 @@ import Product from '../../components/Product';
 import Products from '../../components/Products';
 import NewsLatter from '../../components/NewsLatter';
 
+
+import productService from '../../services/productService';
+
 export default function Home() {
 	const sort = ['all', 'new', 'featured'];
 	const [selected, setSelected] = useState(0);
-	const data = ProductsData.concat(ProductsData);
+	const [products, setProducts] = useState([]);
+
+	useEffect( () => {
+		productService.index().then( res => {
+			if(res.data) {
+				console.log(res.data);
+
+				setProducts(res.data);
+			}
+		});
+	},[])
 	return <Container>
 		<SlideShow products={ProductsData} />
 
@@ -24,7 +37,7 @@ export default function Home() {
 					return <SortItem key={index} className={index === selected ? 'active' : ''} onClick={() => setSelected(index)}>{item}</SortItem>
 				})}
 			</Sort>
-			<Products products={data} />
+			<Products products={products} />
 			<NewsLatter/>
 			<ShopDetails>
 				<ShopContent>
