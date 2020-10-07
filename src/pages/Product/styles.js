@@ -19,7 +19,7 @@ export const ContainerLeft = styled.div`
 `;
 export const ContainerRight = styled.div`
 	margin-left: 40px;
-	width: 100%;
+	width: 90%;
 `;
 
 export const ProductTitle = styled.h1`
