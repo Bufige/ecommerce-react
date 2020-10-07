@@ -18,8 +18,15 @@ export const ContainerLeft = styled.div`
 	`};
 `;
 export const ContainerRight = styled.div`
-	margin-left: 40px;
-	width: 90%;
+	
+	width: 100%;
+
+	${media.tablet`
+		margin-left: 40px;
+	`};
+	${media.desktop`
+		margin-left: 40px;
+	`};
 `;
 
 export const ProductTitle = styled.h1`
