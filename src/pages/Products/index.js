@@ -38,7 +38,10 @@ export default function Products(props) {
 				setShowProducts(res.data);
 			}
 		});
+
+		
 	}, []);
+	
 
 	useEffect( () => {
 		sortBy();

@@ -18,11 +18,9 @@ export const ContainerLeft = styled.div`
 	`};
 `;
 export const ContainerRight = styled.div`
-	
 	width: 100%;
 
 	${media.tablet`
-		margin-left: 40px;
 	`};
 	${media.desktop`
 		margin-left: 40px;

@@ -1,19 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+import { useHistory } from "react-router-dom";
 
 import { Container, ContainerLeft, ContainerRight, Logo, Icon, Link, Bars, CartRound, Menu, MenuItem, SubMenu, SubMenuItem} from './styles';
 
 import SearchBar from '../SearchBar';
 import { useWindowSize } from '../../utils';
 import { useStoreContext } from '../../storeContext';
-import { logout } from '../../helpers/localStorage';
+import { CartGet, logout } from '../../helpers/localStorage';
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [openUser, setOpenUser] = useState(false);
+	const [cartCount, setCartCount] = useState(0);
+
+
+	const history = useHistory(); 
+
 	const window = useWindowSize();
 
 	const {user, setUser} = useStoreContext();
+
+	useEffect( () => {
+		const interval = setInterval(() => {
+			let total = 0;
+			
+			CartGet().map( (item) => total += (item.amount));
+
+			setCartCount(total);
+		}, 1000);
+		return () => clearInterval(interval);
+	}, []);
+
 	const onSearch = (text) => {
 		console.log('search for:' + text);
+
+		history.push('/products', {text: text});
 	}
 	const onMenu = () => {
 		console.log("open sidebar:", !isOpen);
@@ -33,18 +54,7 @@ export default function Header() {
 					<Link to="/">Home</Link>
 				</MenuItem>
 				<MenuItem>
-					<Link to="/products">Category</Link>
-				</MenuItem>
-				<MenuItem>
-					<Link src="#">Lastest</Link>
-					<SubMenu className="submenu">
-						<SubMenuItem>
-							<Link src="#">Product List</Link>
-						</SubMenuItem>
-						<SubMenuItem>
-							<Link src="#">Product Details</Link>
-						</SubMenuItem>
-					</SubMenu>
+					<Link to="/products">Products</Link>
 				</MenuItem>
 				<MenuItem>
 					<Link src="#">Blog</Link>
@@ -58,29 +68,20 @@ export default function Header() {
 					</SubMenu>
 				</MenuItem>
 				<MenuItem>
-					<Link src="#">Pages</Link>
-					<SubMenu className="submenu">
-						<SubMenuItem>
-							Login
-						</SubMenuItem>
-						<SubMenuItem>
-							Register
-						</SubMenuItem>
-					</SubMenu>
-				</MenuItem>
-				<MenuItem>
 					<Link to="/contact">Contact</Link>
 				</MenuItem>
 			</Menu>
-			<SearchBar onClick={onSearch}/> 
+			
 
 			{/*
+			<SearchBar onClick={onSearch}/> 
+
 			<CartRound>
 				<Icon className="fas fa-heart badge" value="0"></Icon>
 			</CartRound>
 			*/}
 			<CartRound>
-				<Link to="/cart"><Icon className="fas fa-shopping-cart badge" value="0"></Icon></Link>
+				<Link to="/cart"><Icon className="fas fa-shopping-cart badge" value={cartCount}></Icon></Link>
 			</CartRound>
 			<CartRound onClick={() => setOpenUser(x => !x)}>
 				<Icon className="fas fa-user" ></Icon>

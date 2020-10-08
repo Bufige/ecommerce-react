@@ -4,15 +4,17 @@ import media from '../../media';
 
 export const Container = styled.div`
 	width: 100%;
-	margin-top: 20px;
+
 	border-radius: 20px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	
 	${media.tablet`
 		width: calc(50% - 20px);
+		margin: 25px 10px;
 	`}
 	${media.desktop`
 		width: calc(25% - 20px);
+		margin: 25px 10px;
 	`};
 `;
 

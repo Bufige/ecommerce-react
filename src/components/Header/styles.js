@@ -90,6 +90,8 @@ export const Link = styled(RLink)`
 	outline: 0;
 	user-select: none;
 
+	font-size: 18px;
+
 	${media.desktop`
 		cursor: pointer;
 	`};

@@ -13,6 +13,7 @@ export const Container = styled.div`
 export const SearchOptions = styled.div`
 	display: flex;
 	justify-content: flex-end;
+	margin-bottom: 20px;
 `;
 
 export const SearchContent = styled.div`
