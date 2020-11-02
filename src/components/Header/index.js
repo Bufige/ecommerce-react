@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 import { Container, ContainerLeft, ContainerRight, Logo, Icon, Link, Bars, CartRound, Menu, MenuItem, SubMenu, SubMenuItem} from './styles';
 
 import SearchBar from '../SearchBar';
-import { useWindowSize } from '../../utils';
 import { useStoreContext } from '../../storeContext';
 import { CartGet, logout } from '../../helpers/localStorage';
 export default function Header() {
@@ -15,8 +14,6 @@ export default function Header() {
 
 
 	const history = useHistory(); 
-
-	const window = useWindowSize();
 
 	const {user, setUser} = useStoreContext();
 
