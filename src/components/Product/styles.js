@@ -4,7 +4,7 @@ import media from '../../media';
 
 export const Container = styled.div`
 	width: 100%;
-
+	margin: 25px 0;
 	border-radius: 20px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	
@@ -106,7 +106,7 @@ export const Icon = styled.i`
 
 export const CartRound = styled.div`
 	border-radius: 50%;
-	border: 1px solid #eeeeee;
+	border: 3px solid #eeeeee;
 	padding: 10px 10px;
 	outline: 0;
 	position: relative;

@@ -3,7 +3,7 @@ import media from '../../media';
 
 
 export const Container = styled.div`
-	width: calc(100% - 10px);
+	width: 100%;
 	height: 250px;
 	display: flex;
 	flex-direction: column;

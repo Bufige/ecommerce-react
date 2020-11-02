@@ -21,8 +21,6 @@ export default function Home() {
 	useEffect( () => {
 		productService.index().then( res => {
 			if(res.data) {
-				console.log(res.data);
-
 				setProducts(res.data);
 			}
 		});

@@ -11,6 +11,7 @@ const StoreProvider = (props) => {
 		setToken(getToken());
 		setUser(getUser());
 	}, []);
+	
 	const storeData = {
 		user, setUser,
 		token, setToken

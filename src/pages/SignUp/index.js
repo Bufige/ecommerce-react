@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import userService from '../../services/userService';
 import { useStoreContext } from '../../storeContext';
 import { setToken as setLToken, setUser as setLUser} from '../../helpers/localStorage';
@@ -21,7 +20,7 @@ export default function SignUp(props) {
 	const [password, setPassword] = useState('');
 	const [cpassword, setCPassword] = useState('');
 
-	const {setToken, setUser, user} = useStoreContext();
+	const {setToken, setUser} = useStoreContext();
 	const onSubmit = (e) => {
 		e.preventDefault();
 

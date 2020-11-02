@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
 import { setToken as setLToken, setUser as setLUser} from '../../helpers/localStorage';
 import userService from '../../services/userService';
 import { useStoreContext } from '../../storeContext';
@@ -18,7 +17,7 @@ export default function SignIn(props) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	const {setToken, setUser, user} = useStoreContext();
+	const {setToken, setUser} = useStoreContext();
 	const onSubmit = (e) => {
 		e.preventDefault();
 

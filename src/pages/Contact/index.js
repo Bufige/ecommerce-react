@@ -11,7 +11,6 @@ import {
 	SupportContainer,
 	Icon, 
 	TextArea,
-	Link
 } from './styles';
 
 export default function Contact() {
@@ -33,11 +32,11 @@ export default function Contact() {
 			<ContainerRight>
 				<SupportContainer>
 					<Icon className="fas fa-mobile fa-lg"></Icon>
-					<a href="tel:+1234567890" target="_blank">+1234567890</a>
+					<a href="tel:+1234567890" target="_blank" rel="noopener noreferrer">+1234567890</a>
 				</SupportContainer>
 				<SupportContainer>
 					<Icon className="fas fa-envelope fa-lg"></Icon>
-					<a href="mailto:bufige1434@gmail.com" target="_blank">bufige1434@gmail.com</a>
+					<a href="mailto:bufige1434@gmail.com" target="_blank" rel="noopener noreferrer">bufige1434@gmail.com</a>
 					
 				</SupportContainer>
 			</ContainerRight>

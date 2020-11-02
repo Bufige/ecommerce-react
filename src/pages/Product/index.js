@@ -10,9 +10,6 @@ import {
 	ProductPrice, 
 	ProductDescription, 
 	ProductShop,
-	InputContainer,
-	Input,
-	InputUpdate,
 	ProductDetail,
 	ProductDetailTitle,
 	ProductDetailContent,
@@ -26,10 +23,7 @@ import productService from '../../services/productService';
 
 
 import { 
-	CartAdd,
-	CartGet,
-	CartUpdate,
-	CartRemove
+	CartAdd
 } from '../../helpers/localStorage';
 
 

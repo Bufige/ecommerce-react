@@ -16,7 +16,6 @@ export default function SlideShow({products, speed = 5000, }) {
 		let tmp = id + 1;
 
 		if(tmp >= products.length) {
-			console.log("entrou aqui")
 			tmp = 0;
 		}
 		setId(tmp);

@@ -6,7 +6,7 @@ import {
 
 
 export const getUser = () => {
-	return localStorage.getItem(USER)
+	return JSON.parse(localStorage.getItem(USER));
 }
 export const setUser = (user) => {
 	return localStorage.setItem(USER, JSON.stringify(user));
@@ -25,7 +25,9 @@ export const logout = () => {
 }
 
 export const CartGet = () => {
-	return JSON.parse(localStorage.getItem(CART));
+	const cart = localStorage.getItem(CART);
+
+	return cart ? JSON.parse(cart) : [];
 }
 export const CartSave = (products) => {
 	localStorage.setItem(CART, JSON.stringify(products));

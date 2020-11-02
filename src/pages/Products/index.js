@@ -85,7 +85,6 @@ export default function Products(props) {
 				return b[selectedOrder] - a[selectedOrder];
 			}
 		});
-		console.log(tmp);
 		if(starts) {
 			tmp = tmp.filter(x => x.name.startsWith(starts));
 		}

@@ -26,11 +26,16 @@ export const SearchContainer = styled.div`
 `;
 export const SortBy = styled.select`
 	width: 150px;
-	height: 35px;
-	padding: 10px 15px;
+	height: 40px;
+	padding: 5px 15px;
 	border-radius: 20px;
 	margin-left: 30px;
 	text-transform: uppercase;
+
+	${media.tablet`
+		user-select: none;
+		outline: none;
+	`};
 
 	${media.desktop`
 		user-select: none;

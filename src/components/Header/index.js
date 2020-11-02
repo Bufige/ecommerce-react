@@ -57,13 +57,13 @@ export default function Header() {
 					<Link to="/products">Products</Link>
 				</MenuItem>
 				<MenuItem>
-					<Link src="#">Blog</Link>
+					<Link to="/">Blog</Link>
 					<SubMenu className="submenu">
 						<SubMenuItem>
-							<Link src="#">Blog</Link>
+							<Link to="/">Blog</Link>
 						</SubMenuItem>
 						<SubMenuItem>
-							<Link src="#">Blog Details</Link>
+							<Link to="/">Blog Details</Link>
 						</SubMenuItem>
 					</SubMenu>
 				</MenuItem>
