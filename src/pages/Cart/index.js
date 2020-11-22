@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useEffect, useState} from 'react';
 
 import {
 	Container,
@@ -23,11 +23,7 @@ import {
 
 import InputCount from '../../components/InputCount';
 
-import { 
-	CartGet,
-	CartUpdate,
-	CartRemove
-} from '../../helpers/localStorage';
+import { useStoreContext } from '../../storeContext';
 
 const CItem = (props) => {
 	const [value, setValue] = useState(props.amount);
@@ -62,34 +58,28 @@ const CItem = (props) => {
 	</CartItem>
 }
 export default function Cart(props) {
-	const [products, setProducts] = useState([])
-	const [shipping, setShipping] = useState(10);
+	const {cart} = useStoreContext();
+
+	const [products, setProducts] = useState(cart.getAll());
+	const [shipping, setShipping] = useState();
+	const [totalPrice, setTotalPrice] = useState(cart.totalPrice);
 
 	useEffect( () => {
-		const tmp = CartGet();
-		setProducts(tmp);
+		// will handle loading of shipping data.
+		setShipping(10);
 	}, []);
-
 	const onUpdate = (item, amount) => {
-		CartUpdate(item, amount);
-
-		const tmp = CartGet();
-		setProducts(tmp);
+		cart.update(item, amount);
+		setProducts(cart.getAll());
+		setTotalPrice(cart.totalPrice);
 	}
 
 	const onRemove = (item) => {
-		CartRemove(item);
-		const tmp = CartGet();
-		setProducts(tmp);
+		cart.remove(item);
+		setProducts(cart.getAll());
+		setTotalPrice(cart.totalPrice);
 	}
 
-	const getTotal = () => {
-		let total = 0;
-		for(let product of products) {
-			total += (product.product.price * product.amount);
-		}
-		return total;
-	}
 	return <Container>
 		<CartHeader>
 			<CartTitle>Cart</CartTitle>
@@ -105,9 +95,9 @@ export default function Cart(props) {
 			})}
 		</CartContent>
 		<CartBottom>
-			<CartItemPrice>SUBTOTAL&nbsp;&nbsp;&nbsp;&nbsp;${getTotal().toFixed(2)}</CartItemPrice>
+			<CartItemPrice>SUBTOTAL&nbsp;&nbsp;&nbsp;&nbsp;${totalPrice.toFixed(2)}</CartItemPrice>
 			<CartItemPrice>SHIPPING&nbsp;&nbsp;&nbsp;&nbsp;${products.length ? shipping : 0}</CartItemPrice>
-			<CartItemPrice>Total&nbsp;&nbsp;&nbsp;&nbsp;${(getTotal() + (products.length ? shipping : 0)).toFixed(2)}</CartItemPrice>
+			<CartItemPrice>Total&nbsp;&nbsp;&nbsp;&nbsp;${(totalPrice + (products.length ? shipping : 0)).toFixed(2)}</CartItemPrice>
 			<Button>CHECKOUT</Button>
 		</CartBottom>
 	</Container>

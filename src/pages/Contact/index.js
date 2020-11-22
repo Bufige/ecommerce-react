@@ -1,4 +1,5 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
+import { useStoreContext } from '../../storeContext';
 
 
 import {
@@ -19,15 +20,24 @@ export default function Contact() {
 	const [subject, setSubject] = useState('');
 	const [message, setMessage] = useState('');
 
+	const {user} = useStoreContext();
+
+	useEffect( () => {
+		if(user) {
+			setName(user.name);
+			setEmail(user.email);
+		}
+	}, []);
+
 	return <Container>
 		<Title>Get in touch</Title>
 
 		<Content>
 			<ContainerLeft>
-				<Input type="text" placeholder="Your name" onChange={(e) => setName(e.target.value)}/>
-				<Input type="text" placeholder="example@example.com" onChange={(e) => setEmail(e.target.value)}/>
-				<Input type="text" placeholder="Subject" onChange={(e) => setSubject(e.target.value)}/>
-				<TextArea placeholder="Enter message" onChange={(e) => setMessage(e.target.value)}/>
+				<Input type="text" value={name} placeholder="Your name" onChange={(e) => setName(e.target.value)}/>
+				<Input type="text" value={email} placeholder="example@example.com" onChange={(e) => setEmail(e.target.value)}/>
+				<Input type="text" value={subject} placeholder="Subject" onChange={(e) => setSubject(e.target.value)}/>
+				<TextArea subject={message} placeholder="Enter message" onChange={(e) => setMessage(e.target.value)}/>
 			</ContainerLeft>
 			<ContainerRight>
 				<SupportContainer>

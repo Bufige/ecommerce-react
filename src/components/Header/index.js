@@ -2,11 +2,25 @@ import React, { useState, useEffect } from 'react';
 
 import { useHistory } from "react-router-dom";
 
-import { Container, ContainerLeft, ContainerRight, Logo, Icon, Link, Bars, CartRound, Menu, MenuItem, SubMenu, SubMenuItem} from './styles';
+import { 
+	Container, 
+	ContainerLeft, 
+	ContainerRight, 
+	Logo, 
+	Icon, 
+	Link,
+	Link2,
+	Bars, 
+	CartRound, 
+	Menu, 
+	MenuItem, 
+	SubMenu, 
+	SubMenuItem
+} from './styles';
 
 import SearchBar from '../SearchBar';
 import { useStoreContext } from '../../storeContext';
-import { CartGet, logout } from '../../helpers/localStorage';
+import { logout } from '../../helpers/localStorage';
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [openUser, setOpenUser] = useState(false);
@@ -15,15 +29,11 @@ export default function Header() {
 
 	const history = useHistory(); 
 
-	const {user, setUser} = useStoreContext();
+	const {user, setUser, cart} = useStoreContext();
 
 	useEffect( () => {
 		const interval = setInterval(() => {
-			let total = 0;
-			
-			CartGet().map( (item) => total += (item.amount));
-
-			setCartCount(total);
+			setCartCount(cart.totalItems);
 		}, 1000);
 		return () => clearInterval(interval);
 	}, []);
@@ -43,7 +53,9 @@ export default function Header() {
 	}
 	return <Container>
 		<ContainerLeft>
-			<Logo src="https://via.placeholder.com/100x30"/>
+			<Link2 to="/">
+				<Logo src="https://via.placeholder.com/100x30"/>
+			</Link2>
 		</ContainerLeft>
 		<ContainerRight>
 			<Menu open={isOpen}>
