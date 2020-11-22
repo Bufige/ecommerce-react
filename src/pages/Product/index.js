@@ -21,20 +21,19 @@ import {
 import InputCount from '../../components/InputCount';
 import productService from '../../services/productService';
 
-
-import { 
-	CartAdd
-} from '../../helpers/localStorage';
+import { useStoreContext } from '../../storeContext';
 
 
 
 export default function Product(props) {
-	const [value, setValue] = useState(1);
+	const [amount, setAmount] = useState(1);
 	const [imageId, setImageId] = useState(0);
 	const [product, setProduct] = useState(undefined);
 
 	const [details, setDetails] = useState([false,false,false]);
 	
+	const {cart} = useStoreContext();
+
 	const images = [
 		"https://via.placeholder.com/100x400",
 		"https://via.placeholder.com/200x400",
@@ -49,23 +48,26 @@ export default function Product(props) {
 	}
 
 	const onChange = (v) => {
-		setValue(v);
+		setAmount(v);
+		cart.update(product, v);
 	}
 
 
 	useEffect( () => {
-		productService.show(props.match.params.id).then( res => {
+		const product_id = parseInt(props.match.params.id);
+
+		productService.show(product_id).then( res => {
 			if(res.data) {
 				setProduct(res.data);
 			}
 		});
-		
+		const item = cart.get(product_id);
+		if(item)
+			setAmount(item.amount);
 	}, [props.match.params.id]);
 
 	const onShop = () => {
-		for(let i = 0; i < value; i++) {
-			CartAdd(product);
-		}
+		cart.update(product, amount);
 	}
 	return product ? <Container>
 		<ContainerLeft>
@@ -82,7 +84,7 @@ export default function Product(props) {
 			<ProductTitle>{product.name}</ProductTitle>
 			<ProductPrice>${product.price}</ProductPrice>
 			<ProductDescription>{product.description}</ProductDescription>
-			<InputCount value={value} onChange={onChange}/>
+			<InputCount value={amount} onChange={onChange}/>
 			<ProductShop onClick={onShop}>shop now</ProductShop>
 			<ProductDetail>
 				<ProductDetailTitle onClick={() => flipDetail(0)}>information<IconDown className={details[0] ? "fas fa-arrow-up" : "fas fa-arrow-down"}/></ProductDetailTitle>

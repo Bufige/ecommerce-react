@@ -8,7 +8,6 @@ import {
 
 export default function InputCount(props) {
 	const [value, setValue] = useState(props.value);
-
 	const updateValue = (v) => {
 		let x = value + v;
 		x = Math.max(1, x);

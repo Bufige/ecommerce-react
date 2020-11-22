@@ -26,12 +26,15 @@ export const ContainerLeft = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	margin-left: 10px;
-
-	margin-bottom: 5px;
-
+	${media.tablet`
+		margin-bottom: 0;
+		margin-left: 10px;
+		margin-top: 5px;
+	`};
 	${media.desktop`
 		margin-bottom: 0;
+		margin-left: 10px;
+		margin-top: 5px;
 	`};
 `;
 
@@ -53,8 +56,13 @@ export const Logo = styled.img`
 	margin-top: 5px;
 	margin-bottom: 12px;
 
+	${media.tablet`
+		cursor: pointer;
+	`}
+
 	${media.desktop`
 		margin: 15px;
+		cursor: pointer;
 	`};
 `;
 
@@ -91,6 +99,15 @@ export const Link = styled(RLink)`
 	user-select: none;
 
 	font-size: 18px;
+
+	${media.desktop`
+		cursor: pointer;
+	`};
+`;
+export const Link2 = styled(RLink)`
+	${media.tablet`
+		cursor: pointer;
+	`}
 
 	${media.desktop`
 		cursor: pointer;

@@ -23,8 +23,7 @@ export default function SignUp(props) {
 	const {setToken, setUser} = useStoreContext();
 	const onSubmit = (e) => {
 		e.preventDefault();
-
-
+		
 		userService.register(name, email, password).then(res => {
 			if(res.data) {
 				setLToken(res.data.auth.token);
@@ -55,7 +54,7 @@ export default function SignUp(props) {
 			</InputContainer>
 			<InputContainer>
 				<Icon className="fas fa-lock" />
-				<Input type="password" placeholder="Confirm your password" onChange={(e) => setCPassword(e.target.value)} />
+				<Input type="password" value={cpassword} placeholder="Confirm your password" onChange={(e) => setCPassword(e.target.value)} />
 			</InputContainer>
 			<Submit type="submit" onClick={onSubmit}>sign up</Submit>
 		</Form>

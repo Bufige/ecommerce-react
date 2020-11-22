@@ -1,5 +1,5 @@
 import React from 'react';
-import { CartAdd } from '../../helpers/localStorage';
+import { useStoreContext } from '../../storeContext';
 import Rating from '../Rating';
 import { 
 	Container,
@@ -16,8 +16,10 @@ import {
 
 
 export default function Product({product, id}) {
+	const {cart} = useStoreContext();
+
 	const addToCart = () => {
-		CartAdd(product);
+		cart.add(product);
 	}
 	return <Container>
 		<ProductContainer>
