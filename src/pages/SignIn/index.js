@@ -24,7 +24,6 @@ export default function SignIn(props) {
 	const {setToken, setUser} = useStoreContext();
 	const onSubmit = (e) => {
 		e.preventDefault();
-
 		
 		if (email && password) {
 			userService.login(email, password).then(res => {
@@ -36,12 +35,10 @@ export default function SignIn(props) {
 					setLUser(res.data.user);
 					setUser(res.data.user);
 				}
-				else {
-					if(res.error) {
-						setInputError(res.error);
-					}
+			}, (error) => {
+				if(error.response.data.error) {
+					setInputError(error.response.data.error);
 				}
-
 			});
 		}
 	}
@@ -57,7 +54,7 @@ export default function SignIn(props) {
 	return <Container>
 		<Title>Sign in</Title>
 		<Form>
-			{ showError('email') || showError('failed')}
+			{ showError('email') || showError('error')}
 			<InputContainer>
 				<Icon className="fas fa-user" />
 				<Input type="text" placeholder="example@example.com" onChange={(e) => setEmail(e.target.value)} />
