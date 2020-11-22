@@ -36,10 +36,9 @@ export default function SignUp(props) {
 				setLUser(res.data.user);
 				setUser(res.data.user);
 			}
-			else {
-				if(res.error) {
-					setInputError(res.error);
-				}
+		}, (error) => {
+			if(error.response.data.error) {
+				setInputError(error.response.data.error);
 			}
 		});
 	}
@@ -55,7 +54,7 @@ export default function SignUp(props) {
 	return <Container>
 		<Title>Sign up</Title>
 		<Form>
-			{ showError('username') || showError('failed')}
+			{ showError('username') || showError('error')}
 			<InputContainer>
 				<Icon className="fas fa-user" />
 				<Input type="text" placeholder="Your name" onChange={(e) => setName(e.target.value)} />

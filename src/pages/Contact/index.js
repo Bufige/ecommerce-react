@@ -27,7 +27,7 @@ export default function Contact() {
 			setName(user.name);
 			setEmail(user.email);
 		}
-	}, []);
+	}, [user]);
 
 	return <Container>
 		<Title>Get in touch</Title>

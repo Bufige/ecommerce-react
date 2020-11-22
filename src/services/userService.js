@@ -6,6 +6,9 @@ const userService = {
 	},
 	register: async (username, email, password) => {
 		return await api.post('/users/register', {username, email, password}).then(res => res.data);
+	},
+	update: async (username, email, password) => {
+		return await api.put('/users/update', {username, email, password}).then(res => res.data);
 	}
 };
 

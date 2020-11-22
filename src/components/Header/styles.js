@@ -105,6 +105,10 @@ export const Link = styled(RLink)`
 	`};
 `;
 export const Link2 = styled(RLink)`
+	color: var(--color-header);
+    text-decoration: none;
+	outline: 0;
+	user-select: none;
 	${media.tablet`
 		cursor: pointer;
 	`}
