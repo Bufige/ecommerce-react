@@ -72,12 +72,12 @@ export const Content = styled.div`
 
     ${media.tablet`
 		cursor: pointer;
-        width: 100%;
+        width: calc(100% - 150px -  40px);
         align-items: center;
 	`};
 	${media.desktop`
 		cursor: pointer;
-        width: 100%;
+        width: calc(100% - 150px - 40px);
         align-items: center;
 	`};
 `;
