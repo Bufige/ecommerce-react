@@ -99,7 +99,7 @@ export default function Header() {
 					{user ? <>
 							{user.role === 'admin' ? 
 								<MenuItem>
-									<Link2 to="/">Admin</Link2>
+									<Link2 to="/admin">Admin</Link2>
 								</MenuItem>
 								:
 								null

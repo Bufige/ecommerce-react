@@ -43,7 +43,7 @@ export const Bar = styled.div`
 	`};
 `;
 
-export const BarItem = styled(RLink)`
+export const BarItem = styled.div`
     display: flex;
     height: 35px;
     color: #666;
