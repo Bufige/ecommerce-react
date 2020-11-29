@@ -16,7 +16,7 @@ export default createGlobalStyle`
 		line-height: 1.5;
 		
 		background-color: white;
-
+		scroll-behavior: smooth;
 
 
 		.noselect {

@@ -6,7 +6,7 @@ import {
 
 import media from '../../media';
 
-export const Container = styled.div`
+export const Container = styled.header`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
