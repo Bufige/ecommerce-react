@@ -98,7 +98,7 @@ export default function Cart(props) {
 			<CartItemPrice>SUBTOTAL&nbsp;&nbsp;&nbsp;&nbsp;${totalPrice.toFixed(2)}</CartItemPrice>
 			<CartItemPrice>SHIPPING&nbsp;&nbsp;&nbsp;&nbsp;${products.length ? shipping : 0}</CartItemPrice>
 			<CartItemPrice>Total&nbsp;&nbsp;&nbsp;&nbsp;${(totalPrice + (products.length ? shipping : 0)).toFixed(2)}</CartItemPrice>
-			<Button>CHECKOUT</Button>
+			<Button to="/checkout">CHECKOUT</Button>
 		</CartBottom>
 	</Container>
 }
