@@ -12,6 +12,7 @@ import NewsLatter from '../../components/NewsLatter';
 
 
 import productService from '../../services/productService';
+import MoveTo from '../../components/MoveTo';
 
 export default function Home() {
 	const sort = ['all', 'new', 'featured'];
@@ -26,6 +27,7 @@ export default function Home() {
 		});
 	},[])
 	return <Container>
+		<MoveTo/>
 		<SlideShow products={ProductsData} />
 
 		<Content>
