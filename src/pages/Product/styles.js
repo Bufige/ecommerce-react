@@ -42,6 +42,10 @@ export const ImageContent = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+
+	.container {
+		display: flex;
+	}
 `;
 export const Image =  styled.img`
 	width: 100%;
