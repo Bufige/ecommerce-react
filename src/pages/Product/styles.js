@@ -5,7 +5,7 @@ import media from '../../media';
 export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
-	margin: 10px;
+	margin: 0 5px;
 	${media.desktop`
 		flex-direction: row;
 		margin: 100px;

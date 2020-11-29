@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const Input = styled.input.attrs(props => ({
 	type: 'text',
 }))`
-	width: calc(90% - 48px);
+	width: calc(100% - 48px);
 	height: 40px;
 	border-radius: 50px;
 	border: none;
@@ -27,13 +27,13 @@ export const Search = styled.i`
 	top: 0;
 	right: 0;
 	margin-top: .9rem;
-	margin-right: 7%;
+	margin-right: 2.5%;
 
 	${media.tablet`
-		margin-right: 1.5rem;
+		margin-right: .7rem;
 	`};
 	${media.desktop`
-		margin-right: 1.5rem;
+		margin-right: .7rem;
 	`};
 	${media.desktop`
 		cursor: pointer;

@@ -13,11 +13,11 @@ export const Container = styled.div`
 	margin-bottom: 10px;
 	${media.tablet`
 		flex-direction: row;
-		margin: 10px 0;
+		margin: 10px 5px;
 	`};
 	${media.desktop`
 		flex-direction: row;
-		margin: 10px 0;
+		margin: 10px 5px;
 	`};
 `;
 export const ContainerLeft = styled.div`
@@ -124,7 +124,7 @@ export const Bars = styled(Icon)`
 	
 	${media.desktop`
 		display: none !important;
-		margin: 10px 5px;
+		margin: 10px 0px;
 	`};
 `;
 
