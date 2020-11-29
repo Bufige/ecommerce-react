@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import FieldMessage from '../../components/FieldMessage';
 import { setToken as setLToken, setUser as setLUser} from '../../helpers/localStorage';
 import userService from '../../services/userService';
 import { useStoreContext } from '../../storeContext';
@@ -14,13 +15,15 @@ import {
 } from './styles';
 
 export default function SignIn(props) {
+	const errorTime = 5 * 1000;
+
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [inputError, setInputError] = useState();
 
 	const {setToken, setUser} = useStoreContext();
 	const onSubmit = (e) => {
 		e.preventDefault();
-
 		
 		if (email && password) {
 			userService.login(email, password).then(res => {
@@ -32,20 +35,31 @@ export default function SignIn(props) {
 					setLUser(res.data.user);
 					setUser(res.data.user);
 				}
-				else {
-					console.log(res.error);
+			}, (error) => {
+				if(error.response.data.error) {
+					setInputError(error.response.data.error);
 				}
-
 			});
+		}
+	}
+
+	const showError = (field) => {
+		if(inputError) {
+			if(inputError.field === field) {
+				setTimeout(() => setInputError(undefined), errorTime);
+				return <FieldMessage message={inputError.message} type="info"/>;
+			}
 		}
 	}
 	return <Container>
 		<Title>Sign in</Title>
 		<Form>
+			{ showError('email') || showError('error')}
 			<InputContainer>
 				<Icon className="fas fa-user" />
 				<Input type="text" placeholder="example@example.com" onChange={(e) => setEmail(e.target.value)} />
 			</InputContainer>
+			{ showError('password') }
 			<InputContainer>
 				<Icon className="fas fa-lock" />
 				<Input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />

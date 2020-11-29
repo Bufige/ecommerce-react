@@ -39,12 +39,12 @@ export default function Header() {
 	}, []);
 
 	const onSearch = (text) => {
-		console.log('search for:' + text);
+		//console.log('search for:' + text);
 
 		history.push('/products', {text: text});
 	}
 	const onMenu = () => {
-		console.log("open sidebar:", !isOpen);
+		//console.log("open sidebar:", !isOpen);
 		setIsOpen(x => !x);
 	}
 	const onLogout = () => {
@@ -99,13 +99,14 @@ export default function Header() {
 					{user ? <>
 							{user.role === 'admin' ? 
 								<MenuItem>
-									Admin
+									<Link2 to="/">Admin</Link2>
 								</MenuItem>
 								:
 								null
 							}
+
 							<MenuItem>
-								Profile
+								<Link2 to="/user">Profile</Link2>
 							</MenuItem>
 							<MenuItem onClick={onLogout}>
 								Logout

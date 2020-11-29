@@ -23,6 +23,7 @@ import productService from '../../services/productService';
 
 import { useStoreContext } from '../../storeContext';
 
+import ScrollContainer from "react-indiana-drag-scroll";
 
 
 export default function Product(props) {
@@ -34,13 +35,6 @@ export default function Product(props) {
 	
 	const {cart} = useStoreContext();
 
-	const images = [
-		"https://via.placeholder.com/100x400",
-		"https://via.placeholder.com/200x400",
-		"https://via.placeholder.com/300x400",
-		"https://via.placeholder.com/400x400",
-		"https://via.placeholder.com/500x400"
-	];
 	const flipDetail = (index) => {
 		let tmp = [...details];
 		tmp[index] = !tmp[index];
@@ -51,7 +45,6 @@ export default function Product(props) {
 		setAmount(v);
 		cart.update(product, v);
 	}
-
 
 	useEffect( () => {
 		const product_id = parseInt(props.match.params.id);
@@ -69,15 +62,21 @@ export default function Product(props) {
 	const onShop = () => {
 		cart.update(product, amount);
 	}
+
+	const onImageSelect = (index) => {
+		setImageId(x => index);	
+	}
 	return product ? <Container>
 		<ContainerLeft>
 			<ImageContent>
-				<Image src={product.images.length ? product.images[imageId].path : images[imageId]}/>
+				<Image src={product.images[imageId].path}/>
 			</ImageContent>
 			<ImageContent>
-				{(product.images.length ? product.images : images).filter( (x, index) => index !== imageId).map((item,index) => {
-					return <MiniImage key={index} src={product.images.length ? item.path : item} onClick={() => setImageId(index)}/>
-				})}
+				<ScrollContainer className="container" horizontal={true}>
+      				{product.images.map((image, index) => (
+      					<MiniImage key={image.path} src={image.path} id={index} onClick={() => onImageSelect(index)} />
+      				))}
+    			</ScrollContainer>
 			</ImageContent>
 		</ContainerLeft>
 		<ContainerRight>

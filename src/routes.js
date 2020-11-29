@@ -7,6 +7,8 @@ import {
 	Route
 } from 'react-router-dom';
 
+import { PrivateRoute } from './components/PrivateRoute';
+import { useStoreContext } from './storeContext';
 
 import GlobalStyle from './styles/global';
 import Header from './components/Header';
@@ -20,8 +22,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Contact from './pages/Contact';
 import Cart from './pages/Cart';
-import { PrivateRoute } from './components/PrivateRoute';
-import { useStoreContext } from './storeContext';
+import User from './pages/User';
 
 
 export default function Routes(props) {
@@ -36,6 +37,7 @@ export default function Routes(props) {
 			<PrivateRoute path="/signin" component={SignIn} condition={!user ? true : false} redirectTo="/"/>
 			<Route path='/products' component={Products}/>
 			<Route path='/product/:id' component={Product}/>
+			<PrivateRoute path="/user" component={User} condition={user ? true : false} redirectTo="/"/>
 			<Route path='/' component={Home}/>
 		</Switch>
 		<Footer/>

@@ -44,8 +44,12 @@ export default createGlobalStyle`
 		--color-header: #000;
 		--color-cart-count: #f51167;
 		--color-footer: #4c4c4c;
-		--color-primary: #0275d8;
-		--color-success: #5cb85c;
+		--color-primary: #007bff;
+		--color-secondary: #6c757d;
+		--color-success: #28a745;
+		--color-danger:	#d9534f;
+		--color-warning: #ffc107;
+		--color-info: #17a2b8;
 		--color-active: #ff003c;
 		--color-grey: #e8e8e8;
 		--color-grey-dark: #868c98;
