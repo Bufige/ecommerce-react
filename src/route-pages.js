@@ -6,6 +6,7 @@ import {
     useLocation
 } from 'react-router-dom';
 
+
 import { PrivateRoute } from './components/PrivateRoute';
 import { useStoreContext } from './storeContext';
 
@@ -24,6 +25,7 @@ import SignUp from './pages/SignUp';
 import Contact from './pages/Contact';
 import Cart from './pages/Cart';
 import User from './pages/User';
+import Checkout from './pages/Checkout';
 
 // admin components
 import Admin from './pages/Admin';
@@ -59,7 +61,9 @@ export default function Pages(props) {
 			<Route path='/product/:id' component={Product}/>
 			<PrivateRoute path="/user" component={User} condition={user ? true : false} redirectTo="/"/>
 			<PrivateRoute path="/admin" component={Admin} condition={user ? true : false} redirectTo="/"/>
-			
+
+            <Route path='/checkout' component={Checkout}/>
+
 			<Route path='/' component={Home}/>
 		</Switch>
         { user && user.role === 'admin' && isInAdmin ? <AdminFooter/> : <Footer/> }

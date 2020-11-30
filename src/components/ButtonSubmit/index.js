@@ -10,7 +10,7 @@ export default function Submit(props) {
             props.onClick();
         }
     }
-    return <Container type="submit" onClick={onSubmit} color={props.color}>
+    return <Container type="submit" onClick={onSubmit} color={props.color} disabled={props.disabled}>
         {props.text}
     </Container>
 }
