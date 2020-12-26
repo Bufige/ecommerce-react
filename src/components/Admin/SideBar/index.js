@@ -21,6 +21,10 @@ export default function SideBar(props) {
             name: 'Orders',
             icon: 'fas fa-wallet'
         },
+        {
+            name: 'Carousel',
+            icon: 'fas fa-images'
+        },
     ]
     const onClick = (item, index) => {
         setSelected(index);

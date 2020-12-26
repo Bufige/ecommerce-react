@@ -63,7 +63,7 @@ export default function Pages(props) {
 			<PrivateRoute path="/admin" component={Admin} condition={user ? true : false} redirectTo="/"/>
 
             <Route path='/checkout' component={Checkout}/>
-
+            
 			<Route path='/' component={Home}/>
 		</Switch>
         { user && user.role === 'admin' && isInAdmin ? <AdminFooter/> : <Footer/> }

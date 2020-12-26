@@ -8,6 +8,7 @@ import Dashboard from './Dashboard';
 import Products from './Products';
 import Users from './Users';
 import Orders from './Orders';
+import Carousel from './Carousel';
 
 export default function Admin() {
     const [selected, setSelected] = useState("dashboard");
@@ -25,6 +26,9 @@ export default function Admin() {
             }
             case 'orders': {
                 return <Orders/>
+            }
+            case 'carousel': {
+                return <Carousel/>
             }
             default: {
                 return <Dashboard/>
