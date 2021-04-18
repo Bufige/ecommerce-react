@@ -14,7 +14,7 @@ import { setUser as setLUser} from '../../../helpers/localStorage';
 import { useStoreContext } from '../../../storeContext';
 
 
-export default function Profile(props) {
+export default function Orders(props) {
     const errorTime = 5 * 1000;
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -32,7 +32,7 @@ export default function Profile(props) {
     const onPassword = (text) => {
         setPassword(text);
     }
-    const onSubmit = () => {
+    const onButton = () => {
         userService.update(name, email, password).then( res => {
             if(res.data) {
                 setUser(res.data.user);
@@ -68,7 +68,7 @@ export default function Profile(props) {
             <InputContainer placeholder="email" icon="fas fa-envelope" value={email} onChange={onEmail}/>
             { showError('password') }
             <InputContainer type="password" placeholder="password" icon="fas fa-lock" value={password} onChange={onPassword}/>
-            <Button onClick={onSubmit} text="update" buttontype="cart"/>
+            <Button onClick={onButton} text="update" buttontype="cart"/>
         </form>
     </Container>
 }

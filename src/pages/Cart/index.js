@@ -5,7 +5,6 @@ import {
 	CartTitle,
 	CartHeader,
 	CartHeaderRight,
-	Button,
 	CartItem,
 	CartItemContent,
 	CartItemTitle,
@@ -20,6 +19,8 @@ import {
 	CartItemFix
 
 } from './styles';
+
+import Button from '../../components/Button';
 
 import InputCount from '../../components/InputCount';
 
@@ -84,7 +85,7 @@ export default function Cart(props) {
 		<CartHeader>
 			<CartTitle>Cart</CartTitle>
 			<CartHeaderRight>
-				<Button to="/">Continue Shopping</Button>
+				<Button to="/" text="Continue Shopping" buttontype="cart"/>
 			</CartHeaderRight>
 
 		</CartHeader>
@@ -98,7 +99,7 @@ export default function Cart(props) {
 			<CartItemPrice>SUBTOTAL&nbsp;&nbsp;&nbsp;&nbsp;${totalPrice.toFixed(2)}</CartItemPrice>
 			<CartItemPrice>SHIPPING&nbsp;&nbsp;&nbsp;&nbsp;${products.length ? shipping : 0}</CartItemPrice>
 			<CartItemPrice>Total&nbsp;&nbsp;&nbsp;&nbsp;${(totalPrice + (products.length ? shipping : 0)).toFixed(2)}</CartItemPrice>
-			<Button to="/checkout">CHECKOUT</Button>
+			<Button to="/checkout" text="Checkout" buttontype="cart"/>
 		</CartBottom>
 	</Container>
 }

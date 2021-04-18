@@ -4,7 +4,7 @@ import CreditCardType, {
     types as CardType,
   } from 'credit-card-type';
 
-import ButtonSubmit from '../../components/ButtonSubmit';
+import Button from '../../components/Button';
 
 import {Container, InputContainer, Form, Input, Title} from './styles';
 
@@ -132,7 +132,7 @@ export default function Checkout() {
                 <Input maxLength="4" placeholder="CVC" value={cardCvc} onChange={e => setCardCvc(e.target.value)}></Input>
             </InputContainer>
 
-            <ButtonSubmit text="Checkout" onClick={onSubmit}/>
+            <Button text="Checkout" onClick={onSubmit} buttontype="cart"/>
         </Form>
     </Container>
 }

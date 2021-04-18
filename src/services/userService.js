@@ -9,6 +9,12 @@ const userService = {
 	},
 	update: async (username, email, password) => {
 		return await api.put('/users/update', {username, email, password}).then(res => res.data);
+	},
+	getAddress: async () => {
+		return await api.get('/address').then(res => res.data);
+	},
+	storeAddress: async (country, state, city, neighborhood, zipcode, address, number) => {
+		return await api.post('/address', {country, state, city, neighborhood, zipcode, address, number}).then(res => res.data);
 	}
 };
 

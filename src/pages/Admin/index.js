@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import {Container, Content} from './styles';
+import {Container, Content, ContentTitle} from './styles';
 import SideBar from '../../components/Admin/SideBar';
 
 
@@ -9,6 +9,8 @@ import Products from './Products';
 import Users from './Users';
 import Orders from './Orders';
 import Carousel from './Carousel';
+
+
 
 export default function Admin() {
     const [selected, setSelected] = useState("dashboard");
@@ -38,6 +40,7 @@ export default function Admin() {
     return <Container>
         <SideBar onClick={onSideBarItem}/>
         <Content>
+			<ContentTitle>{selected.charAt(0).toUpperCase() + selected.slice(1)}</ContentTitle>
             {updateContent()}
         </Content>
     </Container>

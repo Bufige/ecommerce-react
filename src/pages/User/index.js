@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+
 import Profile from './Profile';
+import Address from './Address';
+import Orders from './Orders';
 
 import {
     Container,
@@ -32,13 +35,13 @@ export default function User(props) {
                 return <Profile/>;
             }
             case 'Orders': {
-                return items[1].text;
+                return <Orders/>;
             }
             case 'Address': {
-                return items[2].text;
+                return <Address/>
             }
             default: {
-                return items[0].text;
+                return <Profile/>;
             }
         }
     }
